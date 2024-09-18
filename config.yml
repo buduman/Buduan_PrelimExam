@@ -1,0 +1,32 @@
+---
+
+- hosts: all
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+  
+  - name: Install the latest python3 and pip3
+    apt:
+      name: python3-pip
+      state: latest 
+
+  - name: Install Java open-jdk
+    apt:
+      name: openjdk-17-jre
+      state: latest
+
+  - name: Install MariaDB Server
+    apt:
+      name: mariadb-server
+ 
+  - name: Install MariaDB Client
+    apt:
+      name: mariadb-client
+      state: latest
+  
+  - name: Start MariaDB server
+    service:
+      name=mariadb
+      enabled=true
+      state=started 
